@@ -74,9 +74,30 @@ class DataGuruController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $nip)
     {
-        //
+        try {
+            $data = [
+                'nip' => $request->input('nip'),
+                'nama' => $request->input('nama'),
+                'jenis_kelamin' => $request->input('jenis_kelamin'),
+                'alamat' => $request->input('alamat'),
+                'tgl_lahir' => $request->input('tgl_lahir'),
+            ];
+
+
+            $datas = DataGuru::findOrFail($nip);
+            $datas->update($data);
+            // return back()->with('message_delete', 'Data Album Sudah dihapus');
+
+            return redirect()
+                ->route('dataguru.index')
+                ->with('message_insert', 'Data Wardrobe Sudah ditambahkan');
+        } catch (\Exception $e) {
+            echo "<script>console.error('PHP Error: " .
+                addslashes($e->getMessage()) . "');</script>";
+            return view('error.index');
+        }
     }
 
     /**
