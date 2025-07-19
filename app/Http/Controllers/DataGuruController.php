@@ -31,8 +31,41 @@ class DataGuruController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    // public function store(Request $request)
+    // {
+    //     try {
+    //         $data = [
+    //             'nip' => $request->input('nip'),
+    //             'nama' => $request->input('nama'),
+    //             'jenis_kelamin' => $request->input('jenis_kelamin'),
+    //             'alamat' => $request->input('alamat'),
+    //             'tgl_lahir' => $request->input('tgl_lahir')
+    //         ];
+    //         DataGuru::create($data);
+
+    //         return redirect()
+    //             ->route('dataguru.index')
+    //             ->with('message_insert', 'Data Guru Sudah ditambahkan');
+    //     } catch (\Exception $e) {
+    //         echo "<script>console.error('PHP Error: " .
+    //             addslashes($e->getMessage()) . "');</script>";
+    //         return view('error.index');
+    //     }
+    // }
+
     public function store(Request $request)
     {
+        $request->validate([
+            'nip' => 'required|unique:dataguru,nip',
+            'nama' => 'required',
+            'jenis_kelamin' => 'required',
+            'alamat' => 'required',
+            'tgl_lahir' => 'required|date',
+        ], [
+            'nip.required' => 'NIP wajib diisi.',
+            'nip.unique' => 'NIP ini sudah dipakai. Mohon input ulang!',
+        ]);
+
         try {
             $data = [
                 'nip' => $request->input('nip'),
@@ -41,19 +74,20 @@ class DataGuruController extends Controller
                 'alamat' => $request->input('alamat'),
                 'tgl_lahir' => $request->input('tgl_lahir')
             ];
-            DataGuru::create($data);
 
-            // return back()->with('message_delete', 'Data Customer Sudah di Hapus');
+            DataGuru::create($data);
 
             return redirect()
                 ->route('dataguru.index')
-                ->with('message_insert', 'Data Guru Sudah ditambahkan');
+                ->with('message_insert', 'Data Guru sudah ditambahkan');
         } catch (\Exception $e) {
-            echo "<script>console.error('PHP Error: " .
-                addslashes($e->getMessage()) . "');</script>";
-            return view('error.index');
+            return redirect()
+                ->back()
+                ->withErrors(['error' => 'Terjadi kesalahan saat menyimpan data.'])
+                ->withInput();
         }
     }
+
 
     /**
      * Display the specified resource.
