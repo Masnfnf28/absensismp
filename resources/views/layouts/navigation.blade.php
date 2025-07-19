@@ -54,7 +54,7 @@
                                     {{ __('Data Guru') }}
                                 </x-dropdown-link>
 
-                                <x-dropdown-link :href="route('dashboard')">
+                                <x-dropdown-link :href="route('matapelajaran.index')">
                                     {{ __('Data Mapel') }}
                                 </x-dropdown-link>
 
