@@ -38,7 +38,7 @@
                                 <select class="js-example-placeholder-single js-states form-control w-full m-6" required
                                     name="jenis_kelamin" data-placeholder="Pilih Jenis Kelamin" required>
                                     <option value="">Pilih...</option>
-                                    <option value="Laki - Laki">Laki - Laki</option>
+                                    <option value="Laki-Laki">Laki-Laki</option>
                                     <option value="Perempuan">Perempuan</option>
                                 </select>
                             </div>
@@ -192,7 +192,7 @@
                                 name="jenis_kelamin" id="jenis_kelamin" data-placeholder="Pilih Jenis Kelamin"
                                 required>
                                 <option value="">Pilih...</option>
-                                <option value="Laki - Laki">Laki - Laki</option>
+                                <option value="Laki-Laki">Laki-Laki</option>
                                 <option value="Perempuan">Perempuan</option>
                             </select>
                         </div>
@@ -232,6 +232,42 @@
         });
     </script>
 @endif
+
+@if (session('message_insert'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: '{{ session('message_insert') }}',
+            showConfirmButton: false,
+            timer: 2000
+        });
+    </script>
+@endif
+
+@if (session('message_update'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Diperbarui!',
+            text: '{{ session('message_update') }}',
+            showConfirmButton: false,
+            timer: 2000
+        });
+    </script>
+@endif
+
+{{-- @if (session('message_delete'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Dihapus!',
+            text: '{{ session('message_delete') }}',
+            showConfirmButton: false,
+            timer: 2000
+        });
+    </script>
+@endif --}}
 
 
 <script>
@@ -281,22 +317,61 @@
         status.classList.toggle('hidden');
     }
 
+    // const dataguruDelete = async (id, nama) => {
+    //     let tanya = confirm(`Apakah anda yakin untuk menghapus Guru ${nama} ?`);
+    //     if (tanya) {
+    //         await axios.post(`/dataguru/${id}`, {
+    //                 '_method': 'DELETE',
+    //                 '_token': $('meta[name="csrf-token"]').attr('content')
+    //             })
+    //             .then(function(response) {
+    //                 // Handle success
+    //                 location.reload();
+    //             })
+    //             .catch(function(error) {
+    //                 // Handle error
+    //                 alert('Error deleting record');
+    //                 console.log(error);
+    //             });
+    //     }
+    // }
+
     const dataguruDelete = async (id, nama) => {
-        let tanya = confirm(`Apakah anda yakin untuk menghapus Guru ${nama} ?`);
-        if (tanya) {
-            await axios.post(`/dataguru/${id}`, {
-                    '_method': 'DELETE',
-                    '_token': $('meta[name="csrf-token"]').attr('content')
-                })
-                .then(function(response) {
-                    // Handle success
-                    location.reload();
-                })
-                .catch(function(error) {
-                    // Handle error
-                    alert('Error deleting record');
-                    console.log(error);
-                });
-        }
+        Swal.fire({
+            title: `Yakin ingin menghapus guru ${nama}?`,
+            text: "Data yang dihapus tidak bisa dikembalikan!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.post(`/dataguru/${id}`, {
+                        '_method': 'DELETE',
+                        '_token': $('meta[name="csrf-token"]').attr('content')
+                    })
+                    .then(function(response) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Terhapus!',
+                            text: `Data guru ${nama} berhasil dihapus.`,
+                            timer: 2000,
+                            showConfirmButton: false
+                        }).then(() => {
+                            location.reload();
+                        });
+                    })
+                    .catch(function(error) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal!',
+                            text: 'Terjadi kesalahan saat menghapus data.'
+                        });
+                        console.error(error);
+                    });
+            }
+        });
     }
 </script>

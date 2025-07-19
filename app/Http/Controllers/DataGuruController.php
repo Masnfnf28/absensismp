@@ -79,7 +79,7 @@ class DataGuruController extends Controller
 
             return redirect()
                 ->route('dataguru.index')
-                ->with('message_insert', 'Data Guru sudah ditambahkan');
+                ->with('message_insert', 'Data Guru berhasil ditambahkan!');
         } catch (\Exception $e) {
             return redirect()
                 ->back()
@@ -126,7 +126,7 @@ class DataGuruController extends Controller
 
             return redirect()
                 ->route('dataguru.index')
-                ->with('message_insert', 'Data Wardrobe Sudah ditambahkan');
+                ->with('message_insert', 'Data Guru berhasil di edit!');
         } catch (\Exception $e) {
             echo "<script>console.error('PHP Error: " .
                 addslashes($e->getMessage()) . "');</script>";
@@ -142,7 +142,7 @@ class DataGuruController extends Controller
         try {
             $data = DataGuru::findOrFail($nip);
             $data->delete();
-            return back()->with('message_delete', 'Data Guru Sudah dihapus');
+            return back()->with('message_delete', 'Data Guru berhasil dihapus!');
         } catch (\Exception $e) {
             echo "<script>console.error('PHP Error: " .
                 addslashes($e->getMessage()) . "');</script>";
