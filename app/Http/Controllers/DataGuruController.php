@@ -103,8 +103,16 @@ class DataGuruController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $nip)
     {
-        //
+        try {
+            $data = DataGuru::findOrFail($nip);
+            $data->delete();
+            return back()->with('message_delete', 'Data Guru Sudah dihapus');
+        } catch (\Exception $e) {
+            echo "<script>console.error('PHP Error: " .
+                addslashes($e->getMessage()) . "');</script>";
+            return view('error.index');
+        }
     }
 }
