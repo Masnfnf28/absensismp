@@ -50,7 +50,7 @@
                                     {{ __('Data Siswa') }}
                                 </x-dropdown-link>
 
-                                <x-dropdown-link :href="route('dashboard')">
+                                <x-dropdown-link :href="route('dataguru.index')">
                                     {{ __('Data Guru') }}
                                 </x-dropdown-link>
 
