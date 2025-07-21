@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 use App\Http\Controllers\DatakelasController;
+=======
+use App\Http\Controllers\DataGuruController;
+>>>>>>> fitur-dataguru
 use App\Http\Controllers\DatasiswaController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\ProfileController;
@@ -17,7 +21,11 @@ Route::get('/dashboard', function () {
 
 
 Route::resource('datasiswa', DatasiswaController::class)->middleware('auth');
+<<<<<<< HEAD
 Route::resource('datakelas', DatakelasController::class)->middleware('auth');
+=======
+Route::resource('dataguru', DataGuruController::class)->middleware('auth');
+>>>>>>> fitur-dataguru
 
 
 Route::middleware('auth')->group(function () {
