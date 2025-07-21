@@ -10,7 +10,7 @@ class DatakelasController extends Controller
     public function index()
     {
         try {
-            $datakelas = Datakelas::paginate(3);
+            $datakelas = Datakelas::paginate(5);
             return view('page.datakelas.index', compact('datakelas'));
         } catch (\Exception $e) {
             \Log::error($e->getMessage());
