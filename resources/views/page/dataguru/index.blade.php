@@ -283,7 +283,7 @@
         let url = "{{ route('dataguru.update', ':nip') }}".replace(':nip', nip);
 
         let status = document.getElementById(modalTarget);
-        document.getElementById('title_source').innerText = `UPDATE SISWA ${nama}`;
+        document.getElementById('title_source').innerText = `Update Guru ${nama}`;
 
         document.getElementById('nip').value = nip;
         document.getElementById('nama').value = nama;
