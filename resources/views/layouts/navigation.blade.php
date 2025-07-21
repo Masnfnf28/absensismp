@@ -58,7 +58,7 @@
                                     {{ __('Data Mapel') }}
                                 </x-dropdown-link>
 
-                                <x-dropdown-link :href="route('dashboard')">
+                                <x-dropdown-link :href="route('datakelas.index')">
                                     {{ __('Data Kelas') }}
                                 </x-dropdown-link>
 

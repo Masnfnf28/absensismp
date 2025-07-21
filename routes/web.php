@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\DatakelasController;
 use App\Http\Controllers\DatasiswaController;
+use App\Http\Controllers\KelasController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Datasiswa;
 use Illuminate\Support\Facades\Route;
@@ -15,6 +17,7 @@ Route::get('/dashboard', function () {
 
 
 Route::resource('datasiswa', DatasiswaController::class)->middleware('auth');
+Route::resource('datakelas', DatakelasController::class)->middleware('auth');
 
 
 Route::middleware('auth')->group(function () {
