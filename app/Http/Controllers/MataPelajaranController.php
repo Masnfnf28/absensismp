@@ -20,43 +20,36 @@ class MataPelajaranController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nama_matapelajaran' => 'required|string|max:255',
-        ]);
-
-        Matapelajaran::create([
-            'nama_matapelajaran' => $request->nama_matapelajaran,
-        ]);
-
-        return redirect()->route('matapelajaran.index')->with('success', 'Mata pelajaran berhasil ditambahkan.');
+        MataPelajaran::create($request->all());
+        return redirect()->route('matapelajaran.index')->with('success', 'Mata pelajaran berhasil ditambahkan!');
     }
+
 
 
 
     public function edit($id)
     {
-        $matapelajaran = MataPelajaran::findOrFail($id);
-        return view('page.matapelajaran.edit', compact('matapelajaran'));
+        $data = MataPelajaran::all(); // ini penting untuk table
+        $matapelajaran = MataPelajaran::findOrFail($id); // ini untuk modal edit
+
+        return view('page.matapelajaran.index', compact('data', 'matapelajaran'));
     }
+
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'nama_matapelajaran' => 'required|string|max:255',
-        ]);
-
-        $matapelajaran = MataPelajaran::findOrFail($id);
-        $matapelajaran->update([
-            'nama_matapelajaran' => $request->nama_matapelajaran,
-        ]);
-
-        return redirect()->route('matapelajaran.index')->with('success', 'Mata pelajaran berhasil diperbarui.');
+        $pelajaran = MataPelajaran::findOrFail($id);
+        $pelajaran->update($request->all());
+        return redirect()->route('matapelajaran.index')->with('success', 'Mata pelajaran berhasil diperbarui!');
     }
+
+
 
 
     public function destroy($id)
     {
-        MataPelajaran::findOrFail($id)->delete();
-        return back()->with('success', 'Mata pelajaran berhasil dihapus.');
+        $pelajaran = MataPelajaran::findOrFail($id);
+        $pelajaran->delete();
+        return redirect()->route('matapelajaran.index')->with('success', 'Mata pelajaran berhasil dihapus!');
     }
 }
