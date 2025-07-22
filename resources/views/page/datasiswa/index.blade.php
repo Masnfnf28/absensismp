@@ -1,223 +1,230 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Manajemen Siswa') }}
-        </h2>
+        <div class="flex justify-between items-center">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200">
+                {{ __('Manajemen Siswa') }}
+            </h2>
+        </div>
     </x-slot>
 
-    <div class="py-10">
-        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
-            <div class="gap-5 items-start flex">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg w-1/3 p-4">
-                    <div class="p-4 bg-gray-100 mb-2 rounded-xl font-bold">
-                        FORM INPUT DATA SISWA
+    <div class="py-6">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Student Form Card -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+                    <div class="bg-blue-600 dark:bg-blue-700 px-6 py-4">
+                        <h3 class="text-lg font-semibold text-white">FORM INPUT DATA SISWA</h3>
                     </div>
-                    <div>
-                        <form class="max-w-sm mx-5" method="POST" action="{{ route('datasiswa.store') }}">
+                    <div class="p-6">
+                        <form method="POST" action="{{ route('datasiswa.store') }}" class="space-y-4">
                             @csrf
-                            <div class="mb-5">
+                            <div>
                                 <label for="nis"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor Induk
-                                    Siswa
-                                </label>
-                                <input type="integer" name="nis"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" " />
+                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nomor Induk
+                                    Siswa</label>
+                                <input type="number" name="nis" required
+                                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                             </div>
-                            <div class="mb-5">
+                            <div>
                                 <label for="nama"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Siswa
-                                </label>
-                                <input type="text" name="nama"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" " />
+                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nama
+                                    Siswa</label>
+                                <input type="text" name="nama" required
+                                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                             </div>
-                            <div class="mb-5">
+                            <div>
                                 <label for="jenis_kelamin"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis
+                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Jenis
                                     Kelamin</label>
-                                <select class="js-example-placeholder-single js-states form-control w-full m-6"
-                                    name="jenis_kelamin" data-placeholder="Pilih Jenis Kelamin" required>
-                                    <option value="">Pilih...</option>
+                                <select name="jenis_kelamin" required
+                                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                    <option value="">Pilih Jenis Kelamin</option>
                                     <option value="Laki - Laki">Laki - Laki</option>
                                     <option value="Perempuan">Perempuan</option>
                                 </select>
                             </div>
-                            <div class="mb-5">
+                            <div>
                                 <label for="alamat"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat
-                                </label>
-                                <input type="text" name="alamat"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" " />
+                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Alamat</label>
+                                <input type="text" name="alamat" required
+                                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                             </div>
-                            <div class="mb-5">
+                            <div>
                                 <label for="tgl_lahir"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Lahir
-                                </label>
-                                <input type="date" name="tgl_lahir"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" " />
+                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Tanggal
+                                    Lahir</label>
+                                <input type="date" name="tgl_lahir" required
+                                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                             </div>
                             <button type="submit"
-                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200">
+                                Simpan Data
+                            </button>
                         </form>
                     </div>
                 </div>
 
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg w-full p-4">
-                    <div class="p-4 bg-gray-100 mb-2 rounded-xl font-bold text-center">
-                        DATA SISWA
+                <!-- Student Data Card -->
+                <div class="lg:col-span-2 bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+                    <div class="bg-blue-600 dark:bg-blue-700 px-6 py-4">
+                        <h3 class="text-lg font-semibold text-white text-center">DATA SISWA</h3>
                     </div>
-                    <div>
-                        <div class="relative overflow-x-auto">
-                            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                <thead
-                                    class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 text-center">
+                    <div class="p-4">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                                <thead class="bg-gray-50 dark:bg-gray-700">
                                     <tr>
-                                        <th scope="col" class="px-4 py-3 bg-gray-100">
-                                            NO
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            NIS
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            NAMA
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            JENIS KELAMIN
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            ALAMAT
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            TANGGAL LAHIR
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            ACTION
-                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                            NO</th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                            NIS</th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                            NAMA</th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                            JENIS KELAMIN</th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                            ALAMAT</th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                            TANGGAL LAHIR</th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                            AKSI</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    @php
-                                        $no = 1;
-                                    @endphp
+                                <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
                                     @foreach ($datasiswa as $index => $item)
-                                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 px-4"
-                                            align="center">
-                                            <th scope="row"
-                                                class="px-5 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white bg-gray-100">
+                                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
+                                            <td
+                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300">
                                                 {{ ($datasiswa->currentPage() - 1) * $datasiswa->perPage() + $loop->iteration }}
-                                            </th>
-                                            <td class="px-5 py-3">
+                                            </td>
+                                            <td
+                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300">
                                                 {{ $item->nis }}
                                             </td>
-                                            <td class="px-5 py-3 bg-gray-100">
+                                            <td
+                                                class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
                                                 {{ $item->nama }}
                                             </td>
-                                            <td class="px-5 py-3 bg-gray-100">
+                                            <td
+                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300">
                                                 {{ $item->jenis_kelamin }}
                                             </td>
-                                            <td class="px-5 py-3 bg-gray-100">
+                                            <td
+                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300">
                                                 {{ $item->alamat }}
                                             </td>
-                                            <td class="px-5 py-3 bg-gray-100">
+                                            <td
+                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300">
                                                 {{ $item->tgl_lahir }}
                                             </td>
-                                            <td class="px-5 py-3">
-                                                <button type="button"
-                                                    class="bg-amber-400 p-3 w-10 h-10 rounded-xl text-white hover:bg-amber-500"
-                                                    onclick="editSourceModal(this)" data-modal-target="sourceModal"
-                                                    data-id="{{ $item->id }}" data-nis="{{ $item->nis }}"
-                                                    data-nama="{{ $item->nama }}"
-                                                    data-jenis_kelamin="{{ $item->jenis_kelamin }}"
-                                                    data-alamat="{{ $item->alamat }}"
-                                                    data-tgl_lahir="{{ $item->tgl_lahir }}">
-                                                    <i class="fi fi-sr-file-edit"></i>
-                                                </button>
-                                                <button
-                                                    class="bg-red-400 p-3 w-10 h-10 rounded-xl text-white hover:bg-red-500"
-                                                    onclick="return datasiswaDelete('{{ $item->id }}','{{ $item->nama }}')">
-                                                    <i class="fi fi-sr-delete-document"></i>
-                                                </button>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                <div class="flex space-x-2">
+                                                    <button onclick="editSourceModal(this)"
+                                                        data-modal-target="sourceModal" data-id="{{ $item->id }}"
+                                                        data-nis="{{ $item->nis }}" data-nama="{{ $item->nama }}"
+                                                        data-jenis_kelamin="{{ $item->jenis_kelamin }}"
+                                                        data-alamat="{{ $item->alamat }}"
+                                                        data-tgl_lahir="{{ $item->tgl_lahir }}"
+                                                        class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button
+                                                        onclick="return datasiswaDelete('{{ $item->id }}','{{ $item->nama }}')"
+                                                        class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
-                        <div class="mt-4">
+                        <div class="mt-4 px-4 py-3 bg-gray-50 dark:bg-gray-700 text-right sm:px-6 rounded-b-lg">
                             {{ $datasiswa->links() }}
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
-    <div class="fixed inset-0 flex items-center justify-center z-50 hidden" id="sourceModal">
-        <div class="fixed inset-0 bg-black opacity-50"></div>
-        <div class="fixed inset-0 flex items-center justify-center">
-            <div class="w-full md:w-1/2 relative bg-white rounded-lg shadow mx-5">
-                <div class="flex items-start justify-between p-4 border-b rounded-t">
-                    <h3 class="text-xl font-semibold text-gray-900" id="title_source">
-                        Update Sumber Database
-                    </h3>
-                    <button type="button" onclick="sourceModalClose(this)" data-modal-target="sourceModal"
-                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
-                        data-modal-hide="defaultModal">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
+
+    <!-- Edit Modal -->
+    <div class="fixed inset-0 z-50 hidden" id="sourceModal">
+        <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity"></div>
+        <div class="fixed inset-0 overflow-y-auto">
+            <div class="flex min-h-full items-center justify-center p-4">
+                <div
+                    class="relative transform overflow-hidden rounded-lg bg-white dark:bg-gray-800 shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                    <div class="bg-blue-600 dark:bg-blue-700 px-6 py-4">
+                        <h3 class="text-lg font-semibold text-white" id="title_source">Update Data Siswa</h3>
+                    </div>
+                    <form method="POST" id="formSourceModal">
+                        @csrf
+                        <div class="p-6 space-y-4">
+                            <div>
+                                <label for="edit_nis"
+                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nomor Induk
+                                    Siswa</label>
+                                <input type="text" id="nis" name="nis"
+                                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="edit_nama"
+                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nama</label>
+                                <input type="text" id="nama" name="nama"
+                                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="edit_jenis_kelamin"
+                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Jenis
+                                    Kelamin</label>
+                                <select id="jenis_kelamin" name="jenis_kelamin"
+                                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                    <option value="">Pilih Jenis Kelamin</option>
+                                    <option value="Laki - Laki">Laki - Laki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="edit_alamat"
+                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Alamat</label>
+                                <input type="text" id="alamat" name="alamat"
+                                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="edit_tgl_lahir"
+                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Tanggal
+                                    Lahir</label>
+                                <input type="date" id="tgl_lahir" name="tgl_lahir"
+                                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-700 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+                            <button type="submit" id="formSourceButton"
+                                class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200">
+                                Simpan Perubahan
+                            </button>
+                            <button type="button" onclick="sourceModalClose(this)" data-modal-target="sourceModal"
+                                class="bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500 text-gray-800 dark:text-white font-medium py-2 px-4 rounded-lg transition duration-200">
+                                Batal
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <form method="POST" id="formSourceModal">
-                    @csrf
-                    <div class="flex flex-col  p-4 space-y-6">
-                        <div class="">
-                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Nomor Induk
-                                Siswa</label>
-                            <input type="text" id="nis" name="nis"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan Jenis">
-                        </div>
-                        <div class="">
-                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Nama</label>
-                            <input type="string" id="nama" name="nama"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan Jenis">
-                        </div>
-                        <div class="">
-                            <label for="jenis_kelamin"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis
-                                Kelamin</label>
-                            <select class="js-example-placeholder-single js-states form-control w-full m-6"
-                                name="jenis_kelamin" id="jenis_kelamin" data-placeholder="Pilih Jenis Kelamin"
-                                required>
-                                <option value="">Pilih...</option>
-                                <option value="Laki - Laki">Laki - Laki</option>
-                                <option value="Perempuan">Perempuan</option>
-                            </select>
-                        </div>
-                        <div class="">
-                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Alamat</label>
-                            <input type="text" id="alamat" name="alamat"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        </div>
-                        <div class="">
-                            <label for="tgl_lahir" class="block mb-2 text-sm font-medium text-gray-900">Tanggal
-                                Lahir</label>
-                            <input type="date" id="tgl_lahir" name="tgl_lahir"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        </div>
-                    </div>
-                    <div class="flex items-center p-4 space-x-2 border-t border-gray-200 rounded-b">
-                        <button type="submit" id="formSourceButton"
-                            class="bg-green-400 m-2 w-40 h-10 rounded-xl hover:bg-green-500">Simpan</button>
-                        <button type="button" data-modal-target="sourceModal" onclick="sourceModalClose(this)"
-                            class="bg-red-500 m-2 w-40 h-10 rounded-xl text-white hover:shadow-lg hover:bg-red-600">Batal</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
 </x-app-layout>
 
+<!-- Keep all your existing JavaScript exactly the same -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 @if ($errors->has('nis'))
@@ -300,22 +307,61 @@
         status.classList.toggle('hidden');
     }
 
+    // const datasiswaDelete = async (id, nama) => {
+    //     let tanya = confirm(`Apakah anda yakin untuk menghapus Siswa ${nama} ?`);
+    //     if (tanya) {
+    //         await axios.post(`/datasiswa/${id}`, {
+    //                 '_method': 'DELETE',
+    //                 '_token': $('meta[name="csrf-token"]').attr('content')
+    //             })
+    //             .then(function(response) {
+    //                 // Handle success
+    //                 location.reload();
+    //             })
+    //             .catch(function(error) {
+    //                 // Handle error
+    //                 alert('Error deleting record');
+    //                 console.log(error);
+    //             });
+    //     }
+    // }
+
     const datasiswaDelete = async (id, nama) => {
-        let tanya = confirm(`Apakah anda yakin untuk menghapus Siswa ${nama} ?`);
-        if (tanya) {
-            await axios.post(`/datasiswa/${id}`, {
-                    '_method': 'DELETE',
-                    '_token': $('meta[name="csrf-token"]').attr('content')
-                })
-                .then(function(response) {
-                    // Handle success
-                    location.reload();
-                })
-                .catch(function(error) {
-                    // Handle error
-                    alert('Error deleting record');
-                    console.log(error);
-                });
-        }
+        Swal.fire({
+            title: `Yakin ingin menghapus siswa ${nama}?`,
+            text: "Data yang dihapus tidak bisa dikembalikan!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.post(`/datasiswa/${id}`, {
+                        '_method': 'DELETE',
+                        '_token': $('meta[name="csrf-token"]').attr('content')
+                    })
+                    .then(function(response) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Terhapus!',
+                            text: `Data siswa ${nama} berhasil dihapus.`,
+                            timer: 2000,
+                            showConfirmButton: false
+                        }).then(() => {
+                            location.reload();
+                        });
+                    })
+                    .catch(function(error) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal!',
+                            text: 'Terjadi kesalahan saat menghapus data.'
+                        });
+                        console.error(error);
+                    });
+            }
+        });
     }
 </script>
