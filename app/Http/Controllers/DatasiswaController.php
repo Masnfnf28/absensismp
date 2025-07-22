@@ -47,7 +47,7 @@ class DatasiswaController extends Controller
 
             return redirect()
                 ->route('datasiswa.index')
-                ->with('message_insert', 'Data Album Sudah ditambahkan');
+                ->with('message_insert', 'Data Siswa Sudah ditambahkan');
         } catch (\Exception $e) {
             echo "<script>console.error('PHP Error: " .
                 addslashes($e->getMessage()) . "');</script>";
@@ -92,7 +92,7 @@ class DatasiswaController extends Controller
 
             return redirect()
                 ->route('datasiswa.index')
-                ->with('message_insert', 'Data Wardrobe Sudah ditambahkan');
+                ->with('message_insert', 'Data Siswa Sudah diupdate');
         } catch (\Exception $e) {
             echo "<script>console.error('PHP Error: " .
                 addslashes($e->getMessage()) . "');</script>";
@@ -108,7 +108,7 @@ class DatasiswaController extends Controller
         try {
             $data = Datasiswa::findOrFail($id);
             $data->delete();
-            return back()->with('message_delete', 'Data Customer Sudah dihapus');
+            return back()->with('message_delete', 'Data Siswa Sudah dihapus');
         } catch (\Exception $e) {
             echo "<script>console.error('PHP Error: " .
                 addslashes($e->getMessage()) . "');</script>";

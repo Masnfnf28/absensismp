@@ -87,7 +87,7 @@
                                             ALAMAT
                                         </th>
                                         <th scope="col" class="px-6 py-3">
-                                            TANGGAL LAHIT
+                                            TANGGAL LAHIR
                                         </th>
                                         <th scope="col" class="px-6 py-3">
                                             ACTION
@@ -187,7 +187,8 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis
                                 Kelamin</label>
                             <select class="js-example-placeholder-single js-states form-control w-full m-6"
-                                name="jenis_kelamin" id="jenis_kelamin" data-placeholder="Pilih Jenis Kelamin" required>
+                                name="jenis_kelamin" id="jenis_kelamin" data-placeholder="Pilih Jenis Kelamin"
+                                required>
                                 <option value="">Pilih...</option>
                                 <option value="Laki - Laki">Laki - Laki</option>
                                 <option value="Perempuan">Perempuan</option>
@@ -199,7 +200,8 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
                         <div class="">
-                            <label for="tgl_lahir" class="block mb-2 text-sm font-medium text-gray-900">Tanggal Lahir</label>
+                            <label for="tgl_lahir" class="block mb-2 text-sm font-medium text-gray-900">Tanggal
+                                Lahir</label>
                             <input type="date" id="tgl_lahir" name="tgl_lahir"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
@@ -215,6 +217,44 @@
         </div>
     </div>
 </x-app-layout>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if ($errors->has('nis'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'NIS Duplikat!',
+            text: '{{ $errors->first('nis') }}',
+            confirmButtonText: 'OK'
+        });
+    </script>
+@endif
+
+@if (session('message_insert'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: '{{ session('message_insert') }}',
+            showConfirmButton: false,
+            timer: 2000
+        });
+    </script>
+@endif
+
+@if (session('message_update'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Diperbarui!',
+            text: '{{ session('message_update') }}',
+            showConfirmButton: false,
+            timer: 2000
+        });
+    </script>
+@endif
+
 <script>
     const editSourceModal = (button) => {
         const formModal = document.getElementById('formSourceModal');
@@ -228,13 +268,15 @@
         let url = "{{ route('datasiswa.update', ':id') }}".replace(':id', id);
 
         let status = document.getElementById(modalTarget);
-        document.getElementById('title_source').innerText = `UPDATE SISWA ${nama}`;
+        document.getElementById('title_source').innerText = `Update Siswa ${nama}`;
 
         document.getElementById('nis').value = nis;
         document.getElementById('nama').value = nama;
-        document.getElementById('jenis_kelamin').value = jenis_kelamin;
         document.getElementById('alamat').value = alamat;
         document.getElementById('tgl_lahir').value = tgl_lahir;
+
+        $('#jenis_kelamin').val(jenis_kelamin).trigger('change');
+        document.getElementById('jenis_kelamin').value = jenis_kelamin;
 
         document.getElementById('formSourceButton').innerText = 'Simpan';
         document.getElementById('formSourceModal').setAttribute('action', url);
