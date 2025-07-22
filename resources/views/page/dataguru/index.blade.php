@@ -126,7 +126,7 @@
                                                 <button type="button"
                                                     class="bg-amber-400 p-3 w-10 h-10 rounded-xl text-white hover:bg-amber-500"
                                                     onclick="editSourceModal(this)" data-modal-target="sourceModal"
-                                                    data-nip="{{ $item->nip }}" data-nama="{{ $item->nama }}"
+                                                    data-id="{{ $item->id }}" data-nip="{{ $item->nip }}" data-nama="{{ $item->nama }}"
                                                     data-jenis_kelamin="{{ $item->jenis_kelamin }}"
                                                     data-alamat="{{ $item->alamat }}"
                                                     data-tgl_lahir="{{ $item->tgl_lahir }}">
@@ -134,7 +134,7 @@
                                                 </button>
                                                 <button
                                                     class="bg-red-400 p-3 w-10 h-10 rounded-xl text-white hover:bg-red-500"
-                                                    onclick="return dataguruDelete('{{ $item->nip }}','{{ $item->nama }}')">
+                                                    onclick="return dataguruDelete('{{ $item->id }}','{{ $item->nama }}')">
                                                     <i class="fi fi-sr-delete-document"></i>
                                                 </button>
                                             </td>
@@ -272,13 +272,13 @@
     const editSourceModal = (button) => {
         const formModal = document.getElementById('formSourceModal');
         const modalTarget = button.dataset.modalTarget;
-        // const id = button.dataset.id;
+        const id = button.dataset.id;
         const nip = button.dataset.nip;
         const nama = button.dataset.nama;
         const jenis_kelamin = button.dataset.jenis_kelamin;
         const alamat = button.dataset.alamat;
         const tgl_lahir = button.dataset.tgl_lahir;
-        let url = "{{ route('dataguru.update', ':nip') }}".replace(':nip', nip);
+        let url = "{{ route('dataguru.update', ':id') }}".replace(':id', id);
 
         let status = document.getElementById(modalTarget);
         document.getElementById('title_source').innerText = `Update Guru ${nama}`;

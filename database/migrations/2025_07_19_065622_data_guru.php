@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('dataguru', function (Blueprint $table) {
-            // $table->id();
-            $table->string('nip')->primary();
+            $table->id();
+            // $table->string('nip')->primary();
+            $table->string('nip');
             $table->string('nama');
             $table->string('jenis_kelamin');
             $table->string('alamat');

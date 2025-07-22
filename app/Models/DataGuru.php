@@ -19,5 +19,5 @@ class DataGuru extends Model
 
     protected $table = 'dataguru';
 
-    protected $primaryKey = 'nip';
+    // protected $primaryKey = 'nip';
 }

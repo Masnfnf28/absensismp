@@ -108,7 +108,7 @@ class DataGuruController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $nip)
+    public function update(Request $request, string $id)
     {
         try {
             $data = [
@@ -120,7 +120,7 @@ class DataGuruController extends Controller
             ];
 
 
-            $datas = DataGuru::findOrFail($nip);
+            $datas = DataGuru::findOrFail($id);
             $datas->update($data);
             // return back()->with('message_delete', 'Data Album Sudah dihapus');
 
@@ -137,10 +137,10 @@ class DataGuruController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $nip)
+    public function destroy(string $id)
     {
         try {
-            $data = DataGuru::findOrFail($nip);
+            $data = DataGuru::findOrFail($id);
             $data->delete();
             return back()->with('message_delete', 'Data Guru Berhasil Dihapus!');
         } catch (\Exception $e) {
