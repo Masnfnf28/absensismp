@@ -61,10 +61,6 @@
                                 <x-dropdown-link :href="route('datakelas.index')">
                                     {{ __('Data Kelas') }}
                                 </x-dropdown-link>
-
-                                <x-dropdown-link :href="route('dashboard')">
-                                    {{ __('Konsinyasi Produk') }}
-                                </x-dropdown-link>
                             </x-slot>
                         </x-dropdown>
                     </li>
