@@ -8,6 +8,7 @@
     <div class="py-10">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="gap-5 items-start flex">
+                <!-- FORM INPUT -->
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg w-1/3 p-4">
                     <div class="p-4 bg-gray-100 mb-2 rounded-xl font-bold">
                         FORM INPUT DATA KELAS
@@ -20,14 +21,14 @@
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kode Kelas
                                 </label>
                                 <input type="text" name="kodekelas"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" " />
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                             </div>
                             <div class="mb-5">
                                 <label for="kelas"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kelas
                                 </label>
                                 <input type="text" name="kelas"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" " />
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                             </div>
                             <button type="submit"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
@@ -35,6 +36,7 @@
                     </div>
                 </div>
 
+                <!-- TABEL DATA -->
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg w-full p-4">
                     <div class="p-4 bg-gray-100 mb-2 rounded-xl font-bold text-center">
                         DATA KELAS
@@ -60,22 +62,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @php
-                                        $no = 1;
-                                    @endphp
+                                    @php $no = 1; @endphp
                                     @foreach ($datakelas as $index => $item)
-                                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 px-4"
-                                            align="center">
+                                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 px-4" align="center">
                                             <th scope="row"
                                                 class="px-5 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white bg-gray-100">
                                                 {{ ($datakelas->currentPage() - 1) * $datakelas->perPage() + $loop->iteration }}
                                             </th>
-                                            <td class="px-5 py-3">
-                                                {{ $item->kodekelas }}
-                                            </td>
-                                            <td class="px-5 py-3 bg-gray-100">
-                                                {{ $item->kelas }}
-                                            </td>
+                                            <td class="px-5 py-3">{{ $item->kodekelas }}</td>
+                                            <td class="px-5 py-3 bg-gray-100">{{ $item->kelas }}</td>
                                             <td class="px-5 py-3">
                                                 <button type="button"
                                                     class="bg-amber-400 p-3 w-10 h-10 rounded-xl text-white hover:bg-amber-500"
@@ -100,11 +95,11 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
+
+    <!-- MODAL EDIT -->
     <div class="fixed inset-0 flex items-center justify-center z-50 hidden" id="sourceModal">
         <div class="fixed inset-0 bg-black opacity-50"></div>
         <div class="fixed inset-0 flex items-center justify-center">
@@ -114,25 +109,22 @@
                         Update Sumber Database
                     </h3>
                     <button type="button" onclick="sourceModalClose(this)" data-modal-target="sourceModal"
-                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
-                        data-modal-hide="defaultModal">
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
                 <form method="POST" id="formSourceModal">
                     @csrf
                     <div class="flex flex-col  p-4 space-y-6">
-                        <div class="">
+                        <div>
                             <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Kode Kelas</label>
                             <input type="string" id="kodekelas" name="kodekelas"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan Jenis">
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" placeholder="Masukan Kode Kelas">
                         </div>
-                        <div class="">
+                        <div>
                             <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Nama</label>
                             <input type="string" id="kelas" name="kelas"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan Jenis">
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" placeholder="Masukan Nama">
                         </div>
                     </div>
                     <div class="flex items-center p-4 space-x-2 border-t border-gray-200 rounded-b">
@@ -146,6 +138,24 @@
         </div>
     </div>
 </x-app-layout>
+
+<!-- CDN SWEETALERT -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- SWEETALERT NOTIFIKASI -->
+@if (session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil!',
+        text: '{{ session('success') }}',
+        timer: 2000,
+        showConfirmButton: false
+    });
+</script>
+@endif
+
+<!-- SCRIPT JS -->
 <script>
     const editSourceModal = (button) => {
         const formModal = document.getElementById('formSourceModal');
@@ -155,13 +165,12 @@
         let url = "{{ route('datakelas.update', ':kodekelas') }}".replace(':kodekelas', kodekelas);
 
         let status = document.getElementById(modalTarget);
-        document.getElementById('title_source').innerText = `UPDATE SISWA ${kelas}`;
-
+        document.getElementById('title_source').innerText = `UPDATE KELAS ${kelas}`;
         document.getElementById('kodekelas').value = kodekelas;
         document.getElementById('kelas').value = kelas;
-
         document.getElementById('formSourceButton').innerText = 'Simpan';
         document.getElementById('formSourceModal').setAttribute('action', url);
+
         let csrfToken = document.createElement('input');
         csrfToken.setAttribute('type', 'hidden');
         csrfToken.setAttribute('value', '{{ csrf_token() }}');
@@ -173,31 +182,49 @@
         methodInput.setAttribute('value', 'PATCH');
         formModal.appendChild(methodInput);
 
-        status.classList.toggle('hidden');
+        status.classList.remove('hidden');
     }
 
     const sourceModalClose = (button) => {
         const modalTarget = button.dataset.modalTarget;
         let status = document.getElementById(modalTarget);
-        status.classList.toggle('hidden');
+        status.classList.add('hidden');
     }
 
     const datakelasDelete = async (kodekelas, kelas) => {
-        let tanya = confirm(`Apakah anda yakin untuk menghapus Siswa ${kelas} ?`);
-        if (tanya) {
-            await axios.post(`/datakelas/${kodekelas}`, {
+        Swal.fire({
+            title: `Yakin ingin menghapus kelas ${kelas}?`,
+            text: "Data akan dihapus secara permanen!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.post(`/datakelas/${kodekelas}`, {
                     '_method': 'DELETE',
-                    '_token': $('meta[name="csrf-token"]').attr('content')
+                    '_token': '{{ csrf_token() }}'
                 })
                 .then(function(response) {
-                    // Handle success
-                    location.reload();
+                    Swal.fire(
+                        'Berhasil!',
+                        `Kelas ${kelas} telah dihapus.`,
+                        'success'
+                    ).then(() => {
+                        location.reload();
+                    });
                 })
                 .catch(function(error) {
-                    // Handle error
-                    alert('Error deleting record');
-                    console.log(error);
+                    Swal.fire(
+                        'Gagal!',
+                        'Terjadi kesalahan saat menghapus data.',
+                        'error'
+                    );
+                    console.error(error);
                 });
-        }
+            }
+        });
     }
 </script>
