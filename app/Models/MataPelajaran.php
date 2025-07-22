@@ -9,7 +9,7 @@ class MataPelajaran extends Model
 {
     use HasFactory;
 
-    protected $table = '_mata_pelajaran';
+    protected $table = 'nama_matapelajaran';
 
-    protected $fillable = ['nama_matapelajaran'];
+    protected $fillable = ['nama_mapel', 'kode_mapel']; // atau 'nama_matapelajaran' kalau memang begitu di DB
 }

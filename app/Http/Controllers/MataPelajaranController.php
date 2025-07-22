@@ -20,36 +20,48 @@ class MataPelajaranController extends Controller
 
     public function store(Request $request)
     {
-        MataPelajaran::create($request->all());
+        $request->validate([
+            'nama_mapel' => 'required|string|max:255',
+            'kode_mapel' => 'required|unique:nama_matapelajaran,kode_mapel',
+        ]);
+
+        MataPelajaran::create([
+            'nama_mapel' => $request->nama_mapel,
+            'kode_mapel' => $request->kode_mapel,
+        ]);
+
         return redirect()->route('matapelajaran.index')->with('success', 'Mata pelajaran berhasil ditambahkan!');
     }
 
-
-
-
     public function edit($id)
     {
-        $data = MataPelajaran::all(); // ini penting untuk table
-        $matapelajaran = MataPelajaran::findOrFail($id); // ini untuk modal edit
+        $data = MataPelajaran::all(); // Untuk table
+        $matapelajaran = MataPelajaran::findOrFail($id); // Untuk modal edit
 
         return view('page.matapelajaran.index', compact('data', 'matapelajaran'));
     }
 
-
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nama_mapel' => 'required|string|max:255',
+            'kode_mapel' => 'required|string|max:50|unique:nama_matapelajaran,kode_mapel,' . $id,
+        ]);
+
         $pelajaran = MataPelajaran::findOrFail($id);
-        $pelajaran->update($request->all());
+        $pelajaran->update([
+            'nama_mapel' => $request->nama_mapel,
+            'kode_mapel' => $request->kode_mapel,
+        ]);
+
         return redirect()->route('matapelajaran.index')->with('success', 'Mata pelajaran berhasil diperbarui!');
     }
-
-
-
 
     public function destroy($id)
     {
         $pelajaran = MataPelajaran::findOrFail($id);
         $pelajaran->delete();
+
         return redirect()->route('matapelajaran.index')->with('success', 'Mata pelajaran berhasil dihapus!');
     }
 }
