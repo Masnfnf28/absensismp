@@ -12,4 +12,9 @@ class MataPelajaran extends Model
     protected $table = '_mata_pelajaran';
 
     protected $fillable = ['nama_matapelajaran'];
+
+    public function absensi()
+    {
+        return $this->hasMany(Absensi::class, 'id_');
+    }
 }

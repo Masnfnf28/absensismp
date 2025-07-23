@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Absensi;
 use Illuminate\Http\Request;
 
 class AbsensiController extends Controller
@@ -11,7 +12,11 @@ class AbsensiController extends Controller
      */
     public function index()
     {
-        //
+        $data = Absensi::with(['detail_absensi'])->paginate(10);
+        return view('page.absensi.index')->with([
+            'data' => $data,
+        ]);
+        return view('page.absensi.index');
     }
 
     /**
